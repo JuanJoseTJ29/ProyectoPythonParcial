@@ -2,12 +2,76 @@
 <html>
     <head>
         <title>Gestion APP</title>
+        <link rel="preload" href="../css/styles.css" as="style">
+        <link rel="stylesheet" href="../css/styles.css">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     </head>
-    <body>
+    <body style="background-color: #508bfc">
+        <section >
+            <div class="vh-100 gradient-custom">
+              <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                  <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+          
+                      <div class="mb-md-5 mt-md-4 pb-5">
+          
+                        <h2 class="fw-bold mb-2 text-uppercase">BIENVENIDO</h2>
+                        <p class="text-white-50 mb-5">Por favor ingresa tus datos </p>
+          
+                        <form method="post" action="{% url 'gestion_tareas:ingresar' %}">
+                            {% csrf_token %}
+                                <div class="form-group">
+                                    <label>Usuario</label>
+                                    <input class="form-control form-control-lg" type="text" name="nombreUsuario">
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label>Contraseña</label>
+                                    <input class="form-control form-control-lg" type="password" name="passwordUsuario">
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success">Ingresar</button>
+                                </div>
+                            </form>
+                            <br>
+                            {% if mensaje %}
+                            <div style="text-align: center;  color:red;">
+                                <h6>{{ mensaje }}</h6>
+                            </div>
+                            {% endif %}
+        
+
+          
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--
         <h3>Ingresar a Pichangas APP</h3>
         <form method="post" action="{% url 'gestion_tareas:ingresar' %}">
         {% csrf_token %}
@@ -28,5 +92,6 @@
             <h6>{{ mensaje }}</h6>
         </div>
         {% endif %}
+        -->
     </body>
 </html>
