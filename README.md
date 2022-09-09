@@ -1,4 +1,4 @@
 # Credenciales del login:
 
-## Usuario:juan
+## Nombre:juan
 ## Contraseña:juan
