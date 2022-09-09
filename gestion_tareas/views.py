@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from gestion_tareas.models import usuario, tarea
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from dateutil.parser import parse
 
 def index(request):
     return HttpResponse('Mi primera aplicacion web')
@@ -45,3 +46,18 @@ def dashboard(request):
         'objTarea':tareas_totales,
     })
 
+def nuevaTarea(request):
+    if request.method == 'POST':
+        nombreTarea=request.POST.get('nombreTarea')
+        descripcionTarea=request.POST.get('descripcionTarea')
+        fcTarea=request.POST.get('fcTarea')
+        fcTarea=parse(fcTarea)
+        feTarea=request.POST.get('feTarea')
+        feTarea=parse(feTarea)
+        usuarioTarea=request.POST.get('usuarioTarea')
+        estadosTareas=request.POST.get('estadosTareas')
+        tarea(nombre_tarea=nombreTarea,descripcion=descripcionTarea,fecha_creacion=fcTarea, fecha_entrega=feTarea , usuario_responsable=usuarioTarea, estadoTarea=estadosTareas).save()
+        return HttpResponseRedirect(reverse('gestion_tareas:dashboard'))
+    return render(request,'gestion_tareas/nuevaTarea.html',{
+        'tareas_registradas':tarea.objects.all()
+    })
