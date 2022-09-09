@@ -12,34 +12,37 @@
             <h3>Editar Tarea</h3>
             <form method="post" action="{% url 'gestion_tareas:editarTarea' tarea_info.id %}">
             {% csrf_token %}
+         
                 <div class="form-group col-md-3">
                     <label>Nombre</label>
-                    <input type="text" class="form-control" name="nombreTarea">
+                    
+                    <input type="text" class="form-control" name="nombreTarea" value= "{{ tarea_info.nombre_tarea}}" >
+                   
                 </div>
 
                 <div class="form-group col-md-3">
                     <label>Descripcion</label>
-                    <input type="text" class="form-control" name="descripcionTarea">
+                    <input type="text" class="form-control" name="descripcionTarea" value= "{{ tarea_info.descripcion}}">
                 </div>
 
                 <div class="form-group col-md-3">
                     <label>Fecha de creacion</label>
-                    <input type="date" class="form-control" name="fcTarea">
+                    <input type="date" class="form-control" name="fcTarea" value= "{{ tarea_info.fecha_creacion}}">
                 </div>
 
                 <div class="form-group col-md-3">
                     <label>Fecha de entrega</label>
-                    <input type="date" class="form-control" name="feTarea">
+                    <input type="date" class="form-control" name="feTarea" value= "{{ tarea_info.fecha_entrega}}">
                 </div>
 
                 <div class="form-group col-md-3">
                     <label>Usuario</label>
-                    <input type="text" class="form-control" name="usuarioTarea">
+                    <input type="text" class="form-control" name="usuarioTarea" value= "{{ tarea_info.usuario_responsable}}">
                 </div>
 
                 <div class="form-group col-md-3">
                     <label>Estado</label>
-                    <input type="text" class="form-control" name="estadosTareas">
+                    <input type="text" class="form-control" name="estadosTareas" value= "{{ tarea_info.estadoTarea}}">
                 </div>
 
                 <br>

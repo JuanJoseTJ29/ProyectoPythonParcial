@@ -97,3 +97,11 @@ def eliminarTarea(request,ind):
         'tarea_info' : tarea_eliminar,
         'tareas_registradas':tarea.objects.all()
     })
+
+def detalleTarea(request,ind):
+ tareas_detalles = tarea.objects.get(id=ind)
+
+ return render(request, 'gestion_tareas/detalleTarea.html', {
+        'tareas_detalles': tareas_detalles,
+    })
+

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Detalles de la tarea</h1>
+<h3>Nombre : {{ tareas_detalles.nombre_tarea }}</h3>
+<h3>Descripcion : {{ tareas_detalles.descripcion}}</h3>
+<h3>Fecha de creacion : {{ tareas_detalles.fecha_creacion }}</h3>
+<h3>Fecha de entrega : {{ tareas_detalles.fecha_entrega }}</h3>
+<h3>Usuario: {{ tareas_detalles.usuario_responsable }}</h3>
+<h3>Estado: {{ tareas_detalles.estadoTarea }}</h3>
+    
+    <div class="col-md-3">
+   
+        <a class="btn btn-info" href="{% url 'gestion_tareas:dashboard' %}">Salir</a>
+    </div>
+
+</body>
+</html>
+
+
