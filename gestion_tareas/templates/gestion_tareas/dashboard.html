@@ -22,11 +22,15 @@
                 <thead>
                     <th>Id</th>
                     <th>Nombre</th>
+                    <!--
                     <th>Descripcion</th>
                     <th>Fecha de creacion</th>
                     <th>fecha de entrega</th>
+                    -->
                     <th>Usuario</th>
                     <th>Estado</th>
+                    <th>fin</th>
+                    <th>Detalle</th>
                     <th>Editar</th>
                     <th>Borrar</th>
                 </thead>
@@ -35,12 +39,28 @@
                     <tr>
                         <td>{{ tareas.id }}</td>
                         <td>{{ tareas.nombre_tarea }}</td>
+                          <!--
                         <td>{{ tareas.descripcion }}</td>
                         <td>{{ tareas.fecha_creacion }}</td>
                         <td>{{ tareas.fecha_entrega }}</td>
+                        -->
                         <td>{{ tareas.usuario_responsable }}</td>
-                        <td>{{ tareas.estadoTarea }}</td>
-                        <td><a class="btn btn-warning" href="{% url 'gestion_tareas:detalleTarea' tareas.id %}">ver</a></td>
+                        <td>
+                        {% if tareas.estadoTarea == 'Progreso' %}
+                            <a class="btn btn-success" href="">{{ tareas.estadoTarea }}</a>
+                        {% elif tareas.estadoTarea == 'Finalizando' %}
+                            <a class="btn btn-warning" href="">{{ tareas.estadoTarea }}</a>
+                        {% elif tareas.estadoTarea == 'Finalizado' %}
+                            <a class="btn btn-primary" href="">{{ tareas.estadoTarea }}</a>
+                        {% elif tareas.estadoTarea == 'Pendiente' %}
+                            <a class="btn btn-danger" href="">{{ tareas.estadoTarea }}</a>
+                        {% else %}
+                            <a class="btn btn-info" href="">{{ tareas.estadoTarea }}</a>
+                        {% endif %}
+
+                        </td>
+                        <td><a class="btn btn-dark" href="{% url 'gestion_tareas:finalizarTarea' tareas.id %}">Finalizar</a></td>
+                        <td><a class="btn btn-primary" href="{% url 'gestion_tareas:detalleTarea' tareas.id %}">ver</a></td>
                         <td><a class="btn btn-warning" href="{% url 'gestion_tareas:editarTarea' tareas.id %}">Editar</a></td>
                         <td><a class="btn btn-danger" href="{% url 'gestion_tareas:eliminarTarea' tareas.id %}">Eliminar</a></td>
                     </tr>

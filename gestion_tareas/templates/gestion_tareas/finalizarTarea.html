@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Finalizar tarea</h1>
+<form method="post" action="{% url 'gestion_tareas:finalizarTarea' tarea_finalizar.id %}">
+    
+    {% csrf_token %}
+
+    <div class="col-md-3">
+        <button type="submit" class="btn btn-success">Finalizar</button>
+        <a class="btn btn-info" href="{% url 'gestion_tareas:dashboard' %}">Salir</a>
+    </div>
+</form>
+</body>
+</html>

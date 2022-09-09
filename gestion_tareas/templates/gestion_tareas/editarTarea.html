@@ -27,12 +27,12 @@
 
                 <div class="form-group col-md-3">
                     <label>Fecha de creacion</label>
-                    <input type="date" class="form-control" name="fcTarea" value= "{{ tarea_info.fecha_creacion}}">
+                    <input type="date" class="form-control" name="fcTarea" value= "{{ tarea_info.fecha_creacion|date:'d-m-Y' }}">
                 </div>
 
                 <div class="form-group col-md-3">
                     <label>Fecha de entrega</label>
-                    <input type="date" class="form-control" name="feTarea" value= "{{ tarea_info.fecha_entrega}}">
+                    <input type="date" class="form-control" name="feTarea" value= "{{ tarea_info.fecha_entrega|date:'d-m-Y' }}">
                 </div>
 
                 <div class="form-group col-md-3">

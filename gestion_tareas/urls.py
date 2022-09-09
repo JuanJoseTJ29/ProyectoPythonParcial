@@ -10,6 +10,7 @@ urlpatterns = [
     path('editarTarea/<str:ind>',views.editarTarea,name='editarTarea'),
     path('eliminarTarea/<str:ind>',views.eliminarTarea,name='eliminarTarea'),
     path('detalleTarea/<str:ind>',views.detalleTarea,name='detalleTarea'),
+    path('finalizarTarea/<str:ind>',views.finalizarTarea,name='finalizarTarea'),
 
    # path('hola',views.hola,name='hola'),
    # path('hastaluego',views.hastaluego,name='hastaluego'),

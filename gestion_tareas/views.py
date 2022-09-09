@@ -5,14 +5,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from dateutil.parser import parse
 
-def index(request):
-    return HttpResponse('Mi primera aplicacion web')
 
-def hola(request):
-    return HttpResponse('Esta es la ruta Hola') 
-
-def hastaluego(request):
-    return HttpResponse('ADIOSSSSSSSSSSSSSS') 
 
 def ingresar(request):
     if request.method == 'POST':
@@ -56,7 +49,7 @@ def nuevaTarea(request):
         feTarea=parse(feTarea)
         usuarioTarea=request.POST.get('usuarioTarea')
         estadosTareas=request.POST.get('estadosTareas')
-        tarea(nombre_tarea=nombreTarea,descripcion=descripcionTarea,fecha_creacion=fcTarea, fecha_entrega=feTarea , usuario_responsable=usuarioTarea, estadoTarea=estadosTareas).save()
+        tarea(nombre_tarea=nombreTarea,descripcion=descripcionTarea,fecha_creacion=fcTarea, fecha_entrega=feTarea , usuario_responsable=usuarioTarea, estadoTarea='Progreso').save()
         return HttpResponseRedirect(reverse('gestion_tareas:dashboard'))
     return render(request,'gestion_tareas/nuevaTarea.html',{
         'tareas_registradas':tarea.objects.all()
@@ -105,3 +98,14 @@ def detalleTarea(request,ind):
         'tareas_detalles': tareas_detalles,
     })
 
+def finalizarTarea(request,ind):
+    tarea_finalizar = tarea.objects.get(id=ind)
+    if request.method == 'POST':
+        estadosTareas=request.POST.get('estadosTareas')
+        tarea_finalizar.estadoTarea= 'Finalizado'
+        tarea_finalizar.save()
+        return HttpResponseRedirect(reverse('gestion_tareas:dashboard'))
+    return render(request,'gestion_tareas/finalizarTarea.html',{
+        'tarea_finalizar' : tarea_finalizar,
+        'tareas_registradas':tarea.objects.all()
+    })
