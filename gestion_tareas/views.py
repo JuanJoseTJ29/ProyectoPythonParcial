@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from gestion_tareas.models import usuario
+from gestion_tareas.models import usuario, tarea
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 def index(request):
     return HttpResponse('Mi primera aplicacion web')
@@ -23,7 +25,7 @@ def ingresar(request):
              usuario_registrado = 1
         
         if usuario_registrado == 1:
-            return render(request, 'gestion_tareas/dashboard.html')
+             return HttpResponseRedirect(reverse('gestion_tareas:dashboard'))
         else:
             return render(request,'gestion_tareas/ingresar.html',{
                 'mensaje':'Los datos ingresados son incorrectos',
@@ -31,8 +33,15 @@ def ingresar(request):
     return render(request,'gestion_tareas/ingresar.html')
 
 def dashboard(request):
-    return render(request, 'gestion_tareas/dashboard.html')
+    tareas_totales = tarea.objects.all()
+    #Filtrar tareas propias
+    tareas_propias=[]
+    tareas_mias= tarea.objects.filter(usuario_responsable='juan')
+    for tareas in tareas_mias:
+        tareas_propias.append(tareas)
 
+     #Filtrar finalizado
+    return render(request, 'gestion_tareas/dashboard.html', {
+        'objTarea':tareas_totales,
+    })
 
-
-# Create your views here.
