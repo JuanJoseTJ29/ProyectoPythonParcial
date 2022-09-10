@@ -1,7 +1,7 @@
 from django.db import models
 import datetime
 
-# Create your models here.
+# Tablas de la base de datos 
 class usuario(models.Model):
     nombre = models.CharField(max_length=128,default='')
     apellido = models.CharField(max_length=128,default='')
@@ -16,5 +16,6 @@ class tarea(models.Model):
     fecha_creacion = models.DateField(default=datetime.date.today)
     fecha_entrega = models.DateField(null=True)
     usuario_responsable = models.CharField(max_length=128,default='')
-    estadoTarea = models.CharField(max_length=128,default='Progreso')
-    #estadoTarea = models.CharField(choices=[('progreso', 'Progreso'), ('finalizando', 'Finalizando'), ('finalizado', 'Finalizado'), ('pendiente', 'Pendiente')], max_length=10)
+    #El estado por defecto sera PROGRESO
+    estadoTarea = models.CharField(max_length=128,default='PROGRESO')
+   

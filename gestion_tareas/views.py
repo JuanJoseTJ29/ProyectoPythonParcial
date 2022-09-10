@@ -6,7 +6,7 @@ from django.urls import reverse
 from dateutil.parser import parse
 
 
-
+#Funcion para poder logearse
 def ingresar(request):
     if request.method == 'POST':
         nombreUsuario = request.POST.get('nombreUsuario')
@@ -26,6 +26,7 @@ def ingresar(request):
            })
     return render(request,'gestion_tareas/ingresar.html')
 
+#Funcion para mostrar los datos en el dashboard
 def dashboard(request):
     tareas_totales = tarea.objects.all()
     #Filtrar tareas propias
@@ -39,6 +40,7 @@ def dashboard(request):
         'objTarea':tareas_propias,
     })
 
+#Funcion para crear una tarea
 def nuevaTarea(request):
     if request.method == 'POST':
         nombreTarea=request.POST.get('nombreTarea')
@@ -49,13 +51,13 @@ def nuevaTarea(request):
         feTarea=parse(feTarea)
         usuarioTarea=request.POST.get('usuarioTarea')
         estadosTareas=request.POST.get('estadosTareas')
-        tarea(nombre_tarea=nombreTarea,descripcion=descripcionTarea,fecha_creacion=fcTarea, fecha_entrega=feTarea , usuario_responsable=usuarioTarea, estadoTarea='Progreso').save()
+        tarea(nombre_tarea=nombreTarea,descripcion=descripcionTarea,fecha_creacion=fcTarea, fecha_entrega=feTarea , usuario_responsable=usuarioTarea, estadoTarea='PROGRESO').save()
         return HttpResponseRedirect(reverse('gestion_tareas:dashboard'))
     return render(request,'gestion_tareas/nuevaTarea.html',{
         'tareas_registradas':tarea.objects.all()
     })
 
-
+#Funcion para editar una tarea
 def editarTarea(request,ind):
     tarea_editar = tarea.objects.get(id=ind)
     if request.method == 'POST':
@@ -81,6 +83,7 @@ def editarTarea(request,ind):
         'tareas_registradas':tarea.objects.all()
     })
 
+#Funcion para eliminar una tarea
 def eliminarTarea(request,ind):
     tarea_eliminar = tarea.objects.get(id=ind)
     if request.method == 'POST':
@@ -91,6 +94,7 @@ def eliminarTarea(request,ind):
         'tareas_registradas':tarea.objects.all()
     })
 
+#Funcion para mostrar detalles de la tarea
 def detalleTarea(request,ind):
  tareas_detalles = tarea.objects.get(id=ind)
 
@@ -98,11 +102,12 @@ def detalleTarea(request,ind):
         'tareas_detalles': tareas_detalles,
     })
 
+#Funcion para darle estado finalizado a una tarea
 def finalizarTarea(request,ind):
     tarea_finalizar = tarea.objects.get(id=ind)
     if request.method == 'POST':
         estadosTareas=request.POST.get('estadosTareas')
-        tarea_finalizar.estadoTarea= 'Finalizado'
+        tarea_finalizar.estadoTarea= 'FINALIZADA'
         tarea_finalizar.save()
         return HttpResponseRedirect(reverse('gestion_tareas:dashboard'))
     return render(request,'gestion_tareas/finalizarTarea.html',{

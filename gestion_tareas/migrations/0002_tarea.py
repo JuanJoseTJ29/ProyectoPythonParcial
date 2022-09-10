@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
                 ("fecha_creacion", models.DateField(default=datetime.date.today)),
                 ("fecha_entrega", models.DateField(null=True)),
                 ("usuario_responsable", models.CharField(default="", max_length=128)),
-                ("estadoTarea", models.CharField(default="Progreso", max_length=128)),
+                ("estadoTarea", models.CharField(default="PROGRESO", max_length=128)),
                
             ],
         ),
